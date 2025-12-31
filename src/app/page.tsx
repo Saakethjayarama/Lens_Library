@@ -10,6 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Header } from "@/components/Header";
 import { ImageCard } from "@/components/ImageCard";
 import { BatchActions } from "@/components/BatchActions";
+import { ImageDialog } from "@/components/ImageDialog";
 import { Frown, Loader2 } from "lucide-react";
 
 const IMAGES_PER_PAGE = 12;
@@ -25,6 +26,8 @@ export default function HomePage() {
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [viewingImage, setViewingImage] = useState<ImagePlaceholder | null>(null);
+
 
   // Ref to track if initial load has been triggered
   const initialLoadTriggered = useRef(false);
@@ -43,7 +46,12 @@ export default function HomePage() {
       if (isInitialLoad) {
         setImages(newImages);
       } else {
-        setImages((prev) => [...prev, ...newImages]);
+        // Prevent adding duplicate images
+        setImages((prev) => {
+            const existingIds = new Set(prev.map(img => img.id));
+            const filteredNewImages = newImages.filter(img => !existingIds.has(img.id));
+            return [...prev, ...filteredNewImages];
+        });
       }
       setHasMore(newHasMore);
       setPage(currentPage + 1);
@@ -63,7 +71,8 @@ export default function HomePage() {
   useEffect(() => {
     if (isAuthenticated && !initialLoadTriggered.current) {
         initialLoadTriggered.current = true;
-        loadImages(true);
+        // Wrapping in timeout to allow state to settle after auth check
+        setTimeout(() => loadImages(true), 0);
     }
   }, [isAuthenticated, loadImages]);
 
@@ -109,6 +118,14 @@ export default function HomePage() {
 
   const handleDeselectAll = () => {
     setSelectedIds(new Set());
+  };
+
+  const handleViewImage = (image: ImagePlaceholder) => {
+    setViewingImage(image);
+  };
+
+  const handleCloseDialog = () => {
+    setViewingImage(null);
   };
 
   const handleDelete = async (id: string) => {
@@ -212,6 +229,7 @@ export default function HomePage() {
                   isSelectionMode={isSelectionMode}
                   onToggleSelection={handleToggleSelection}
                   onStartSelection={handleStartSelection}
+                  onViewImage={handleViewImage}
                   onDelete={handleDelete}
                   onDownload={handleDownload}
                 />
@@ -241,6 +259,13 @@ export default function HomePage() {
         onDeselectAll={handleDeselectAll}
         isDownloading={isDownloading}
       />
+       {viewingImage && (
+        <ImageDialog
+          image={viewingImage}
+          onClose={handleCloseDialog}
+          onDownload={handleDownload}
+        />
+      )}
     </div>
   );
 }

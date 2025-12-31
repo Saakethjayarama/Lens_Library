@@ -15,6 +15,7 @@ interface ImageCardProps {
   isSelectionMode: boolean;
   onToggleSelection: (id: string) => void;
   onStartSelection: (id: string) => void;
+  onViewImage: (image: ImagePlaceholder) => void;
   onDelete: (id: string) => void;
   onDownload: (url: string, filename: string) => void;
 }
@@ -25,18 +26,23 @@ export function ImageCard({
   isSelectionMode,
   onToggleSelection,
   onStartSelection,
+  onViewImage,
   onDelete,
   onDownload,
 }: ImageCardProps) {
   const handleLongPress = (event: MouseEvent | TouchEvent) => {
     event.preventDefault();
-    onStartSelection(image.id);
+    if (!isSelectionMode) {
+      onStartSelection(image.id);
+    }
   };
 
   const handleClick = (event: MouseEvent | TouchEvent) => {
     if (isSelectionMode) {
       event.preventDefault();
       onToggleSelection(image.id);
+    } else {
+      onViewImage(image);
     }
   };
 
@@ -46,7 +52,7 @@ export function ImageCard({
     <Card
       {...longPressEvents}
       className={cn(
-        "group relative overflow-hidden rounded-lg shadow-sm transition-all duration-300 ease-in-out",
+        "group relative overflow-hidden rounded-lg shadow-sm transition-all duration-300 ease-in-out cursor-pointer",
         "focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-background",
         isSelected && "ring-2 ring-primary ring-offset-2 ring-offset-background"
       )}
@@ -64,7 +70,7 @@ export function ImageCard({
         <div
           className={cn(
             "absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300",
-            "group-hover:opacity-100",
+            (isSelectionMode || isSelected) ? "group-hover:opacity-100" : "group-hover:opacity-50",
             isSelected && "opacity-100"
           )}
           aria-hidden="true"
@@ -72,11 +78,14 @@ export function ImageCard({
 
         {/* Selection Checkbox */}
         <div
-          onClick={() => onToggleSelection(image.id)}
+          onClick={(e) => {
+            e.stopPropagation(); // prevent card click
+            onToggleSelection(image.id)
+          }}
           className={cn(
             "absolute left-3 top-3 z-10 h-6 w-6 cursor-pointer rounded-full border-2 border-white bg-white/30 backdrop-blur-sm transition-all",
             "flex items-center justify-center",
-            isSelectionMode ? "opacity-100 scale-100" : "opacity-0 scale-50",
+            isSelectionMode ? "opacity-100 scale-100" : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100",
             isSelected && "bg-primary border-primary"
           )}
           aria-label={isSelected ? "Deselect image" : "Select image"}
@@ -87,7 +96,10 @@ export function ImageCard({
         </div>
 
         {/* Action Buttons */}
-        <div className="absolute right-3 top-3 z-10 flex flex-col gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+         <div className={cn(
+            "absolute right-3 top-3 z-10 flex flex-col gap-2 transition-opacity duration-300",
+            isSelectionMode ? "opacity-0" : "opacity-0 group-hover:opacity-100"
+          )}>
           <Button
             variant="secondary"
             size="icon"

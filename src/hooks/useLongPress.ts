@@ -22,6 +22,9 @@ const useLongPress = (
         return;
       }
 
+      // persist event
+      event.persist();
+
       longPressTriggered.current = false;
       timeout.current = setTimeout(() => {
         onLongPress(event);
@@ -36,12 +39,20 @@ const useLongPress = (
       if (timeout.current) {
         clearTimeout(timeout.current);
       }
-      if (event.type === 'mouseup' || event.type === 'touchend') {
-        if (!longPressTriggered.current) {
-          onClick(event);
-        }
+      
+      const isTouchEvent = event.type === 'touchend';
+
+      // Only trigger onClick if it was not a long press
+      if (!longPressTriggered.current) {
+         // For touch events, we need to prevent the default to avoid firing
+         // a 'click' event right after 'touchend'
+         if (isTouchEvent) {
+            event.preventDefault();
+         }
+        onClick(event);
       }
-      // Prevent context menu from appearing after long press
+      
+      // Prevent context menu from appearing after long press on touch devices
       if(longPressTriggered.current && shouldPreventDefault) {
         event.preventDefault();
       }
@@ -52,6 +63,7 @@ const useLongPress = (
   const cancel = useCallback(() => {
       if (timeout.current) {
         clearTimeout(timeout.current);
+        longPressTriggered.current = false;
       }
   }, []);
 
