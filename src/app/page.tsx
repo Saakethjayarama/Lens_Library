@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import * as imageService from "@/services/imageService";
@@ -23,26 +23,31 @@ export default function HomePage() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
 
-  useEffect(() => {
-    if (!isAuthLoading && !isAuthenticated) {
-      router.push("/login");
-    }
-  }, [isAuthenticated, isAuthLoading, router]);
+  // Ref to track if initial load has been triggered
+  const initialLoadTriggered = useRef(false);
 
-  const loadImages = useCallback(async () => {
-    if (isLoading || !hasMore) return;
-    
+  const loadImages = useCallback(async (isInitialLoad = false) => {
+    if (isLoading || (!isInitialLoad && !hasMore)) return;
+
     setIsLoading(true);
+    // Use a fresh `page` state value for the request
+    const currentPage = isInitialLoad ? 1 : page;
+    
     try {
       const { images: newImages, hasMore: newHasMore } =
-        await imageService.getImages(page, IMAGES_PER_PAGE);
+        await imageService.getImages(currentPage, IMAGES_PER_PAGE);
       
-      setImages((prev) => [...prev, ...newImages]);
+      if (isInitialLoad) {
+        setImages(newImages);
+      } else {
+        setImages((prev) => [...prev, ...newImages]);
+      }
       setHasMore(newHasMore);
-      setPage((prevPage) => prevPage + 1);
+      setPage(currentPage + 1);
+
     } catch (error) {
       toast({
         variant: "destructive",
@@ -52,37 +57,34 @@ export default function HomePage() {
     } finally {
       setIsLoading(false);
     }
-  }, [page, hasMore, isLoading, toast]);
+  }, [isLoading, hasMore, page, toast]);
 
 
   useEffect(() => {
-    if (isAuthenticated) {
-      // Reset and load initial images
-      setImages([]);
-      setPage(1);
-      setHasMore(true);
-      // A little trick to make sure states are updated before loading
-      setTimeout(() => {
-          loadImages();
-      }, 0);
+    if (isAuthenticated && !initialLoadTriggered.current) {
+        initialLoadTriggered.current = true;
+        loadImages(true);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, loadImages]);
 
 
   useEffect(() => {
     const handleScroll = () => {
+      // Check if we're near the bottom of the page
       if (
         window.innerHeight + document.documentElement.scrollTop < document.documentElement.offsetHeight - 200 ||
         isLoading
       ) {
         return;
       }
-      loadImages();
+      if(hasMore) {
+        loadImages();
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isLoading, loadImages]);
+  }, [isLoading, hasMore, loadImages]);
 
 
   const handleToggleSelection = (id: string) => {
@@ -171,7 +173,13 @@ export default function HomePage() {
     handleDeselectAll();
   };
 
-  if (isAuthLoading || !isAuthenticated) {
+  useEffect(() => {
+    if (!isAuthLoading && !isAuthenticated) {
+      router.push("/login");
+    }
+  }, [isAuthenticated, isAuthLoading, router]);
+
+  if (isAuthLoading || (!isAuthenticated && !initialLoadTriggered.current) ) {
     return (
       <div className="flex h-screen items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -181,7 +189,7 @@ export default function HomePage() {
 
   const isSelectionMode = selectedIds.size > 0;
   
-  const showInitialLoading = isLoading && page === 1 && images.length === 0;
+  const showInitialLoading = isLoading && images.length === 0;
 
   return (
     <div className="flex min-h-screen flex-col">
