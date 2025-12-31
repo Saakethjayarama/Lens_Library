@@ -1,3 +1,184 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "10",
+      "imageUrl": "https://images.unsplash.com/photo-1429743305873-d4065c15f93e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxmb3Jlc3QlMjBwYXRofGVufDB8fHx8MTc2NzExNTk5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Forest path in the morning mist",
+      "imageHint": "forest path"
+    },
+    {
+      "id": "11",
+      "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjaXR5JTIwc2t5bGluZXxlbnwwfHx8fDE3NjcxNjI3MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "City skyline at twilight",
+      "imageHint": "city skyline"
+    },
+    {
+      "id": "12",
+      "imageUrl": "https://images.unsplash.com/photo-1480497490787-505ec076689f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb3VudGFpbiUyMHNub3d8ZW58MHx8fHwxNzY3MjAwOTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Snowy mountain peaks under a clear blue sky",
+      "imageHint": "mountain snow"
+    },
+    {
+      "id": "13",
+      "imageUrl": "https://images.unsplash.com/photo-1597097458412-7dbb35fa1fcf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYWtlJTIwcmVmbGVjdGlvbnxlbnwwfHx8fDE3NjcxMTY0MDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A calm lake reflecting the surrounding trees",
+      "imageHint": "lake reflection"
+    },
+    {
+      "id": "14",
+      "imageUrl": "https://images.unsplash.com/photo-1696677049402-67b4d3681f05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzdW5mbG93ZXIlMjBjbG9zZS11cHxlbnwwfHx8fDE3NjcyMDA5MTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Close-up of a blooming sunflower",
+      "imageHint": "sunflower close-up"
+    },
+    {
+      "id": "15",
+      "imageUrl": "https://images.unsplash.com/photo-1476673160081-cf065607f449?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YmVhY2glMjB3YXZlc3xlbnwwfHx8fDE3NjcxNDYyNjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Sandy beach with waves crashing on the shore",
+      "imageHint": "beach waves"
+    },
+    {
+      "id": "16",
+      "imageUrl": "https://images.unsplash.com/photo-1574848296471-28f79a036f79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzY3MTk0ODU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Abstract architectural details of a modern building",
+      "imageHint": "modern architecture"
+    },
+    {
+      "id": "17",
+      "imageUrl": "https://images.unsplash.com/photo-1596878477485-578740d1b987?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdHJlZXQlMjBtYXJrZXR8ZW58MHx8fHwxNzY3MTE0NjY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A vibrant street market in a bustling city",
+      "imageHint": "street market"
+    },
+    {
+      "id": "18",
+      "imageUrl": "https://images.unsplash.com/photo-1760276148669-71620e6eb91c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjYXQlMjBuYXBwaW5nfGVufDB8fHx8MTc2NzIwMDkwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A cat peacefully napping in a sunbeam",
+      "imageHint": "cat napping"
+    },
+    {
+      "id": "19",
+      "imageUrl": "https://images.unsplash.com/photo-1637801566560-3819944934be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzdGFycnklMjBkZXNlcnR8ZW58MHx8fHwxNzY3MjAwOTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A starry night sky over a desert landscape",
+      "imageHint": "starry desert"
+    },
+    {
+      "id": "20",
+      "imageUrl": "https://images.unsplash.com/photo-1628110341049-37a92fcbcb14?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb3VudHJ5JTIwcm9hZHxlbnwwfHx8fDE3NjcyMDA5MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A winding road through a green countryside",
+      "imageHint": "country road"
+    },
+    {
+      "id": "21",
+      "imageUrl": "https://images.unsplash.com/photo-1572978841505-cd72e24e1fcf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYWNhcm9ucyUyMGZvb2R8ZW58MHx8fHwxNzY3MjAwOTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A plate of delicious, colorful macarons",
+      "imageHint": "macarons food"
+    },
+    {
+      "id": "22",
+      "imageUrl": "https://images.unsplash.com/photo-1725744804552-d2ce8863542a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxob3QtYWlyJTIwYmFsbG9vbnN8ZW58MHx8fHwxNzY3MjAwOTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Hot air balloons rising at sunrise",
+      "imageHint": "hot-air balloons"
+    },
+    {
+      "id": "23",
+      "imageUrl": "https://images.unsplash.com/photo-1588580000645-4562a6d2c839?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsaWJyYXJ5JTIwYm9va3N8ZW58MHx8fHwxNzY3MTE2NzAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A quiet library with shelves full of old books",
+      "imageHint": "library books"
+    },
+    {
+      "id": "24",
+      "imageUrl": "https://images.unsplash.com/photo-1609428538208-e3dda29ec2e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3YXRlcmZhbGwlMjByYWluZm9yZXN0fGVufDB8fHx8MTc2NzIwMDkwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A majestic waterfall in a lush rainforest",
+      "imageHint": "waterfall rainforest"
+    },
+    {
+      "id": "25",
+      "imageUrl": "https://images.unsplash.com/photo-1710702417473-125a902e65a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2F5YWtpbmclMjByaXZlcnxlbnwwfHx8fDE3NjcxMTM0ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A person kayaking on a tranquil river",
+      "imageHint": "kayaking river"
+    },
+    {
+      "id": "26",
+      "imageUrl": "https://images.unsplash.com/photo-1666607114369-de992c3cefcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhdXR1bW4lMjBwYXJrfGVufDB8fHx8MTc2NzEyMTcxMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Autumn leaves covering a park bench",
+      "imageHint": "autumn park"
+    },
+    {
+      "id": "27",
+      "imageUrl": "https://images.unsplash.com/photo-1536168483275-f5736f5c844b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx2aW50YWdlJTIwY2FyfGVufDB8fHx8MTc2NzE3NzAwMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A vintage car on a city street",
+      "imageHint": "vintage car"
+    },
+    {
+      "id": "28",
+      "imageUrl": "https://images.unsplash.com/photo-1493857671505-72967e2e2760?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb2ZmZWUlMjBzaG9wfGVufDB8fHx8MTc2NzE0NDY0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A modern coffee shop interior",
+      "imageHint": "coffee shop"
+    },
+    {
+      "id": "29",
+      "imageUrl": "https://images.unsplash.com/photo-1499002238440-d264edd596ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYXZlbmRlciUyMGZpZWxkfGVufDB8fHx8MTc2NzEwNDgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A field of lavender at sunset",
+      "imageHint": "lavender field"
+    },
+    {
+      "id": "30",
+      "imageUrl": "https://images.unsplash.com/photo-1448035249594-10682f3c2db3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzcGlyYWwlMjBzdGFpcmNhc2V8ZW58MHx8fHwxNzY3MTI5ODQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A spiral staircase in an old building",
+      "imageHint": "spiral staircase"
+    },
+    {
+      "id": "31",
+      "imageUrl": "https://images.unsplash.com/photo-1710003759952-0e96a8e981ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzdXJmZXIlMjB3YXZlfGVufDB8fHx8MTc2NzIwMDkwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A surfer riding a wave",
+      "imageHint": "surfer wave"
+    },
+    {
+      "id": "32",
+      "imageUrl": "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlYXJ0aCUyMHNwYWNlfGVufDB8fHx8MTc2NzE0MDg2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A view of Earth from space",
+      "imageHint": "earth space"
+    },
+    {
+      "id": "33",
+      "imageUrl": "https://images.unsplash.com/photo-1574782722351-b5f5dfbc9905?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb2xvcmZ1bCUyMHNwaWNlc3xlbnwwfHx8fDE3NjcxNzY4NDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A collection of colorful spices",
+      "imageHint": "colorful spices"
+    },
+    {
+      "id": "34",
+      "imageUrl": "https://images.unsplash.com/photo-1728767595276-36f20d5fea56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxndWl0YXIlMjBtdXNpY2lhbnxlbnwwfHx8fDE3NjcyMDA5MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A musician playing a guitar on stage",
+      "imageHint": "guitar musician"
+    },
+    {
+      "id": "35",
+      "imageUrl": "https://images.unsplash.com/photo-1600377927594-ceae8f8981a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdG9ybXklMjBza3l8ZW58MHx8fHwxNzY3MjAwOTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A dramatic cloudy sky before a storm",
+      "imageHint": "stormy sky"
+    },
+    {
+      "id": "36",
+      "imageUrl": "https://images.unsplash.com/photo-1562408590-e32931084e23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjaXJjdWl0JTIwYm9hcmR8ZW58MHx8fHwxNzY3MTM1NDU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A close-up of a computer circuit board",
+      "imageHint": "circuit board"
+    },
+    {
+      "id": "37",
+      "imageUrl": "https://images.unsplash.com/photo-1708975477420-907fd5691ce7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbmhvdXNlJTIwcGxhbnRzfGVufDB8fHx8MTc2NzEwNjAzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A greenhouse filled with plants",
+      "imageHint": "greenhouse plants"
+    },
+    {
+      "id": "38",
+      "imageUrl": "https://images.unsplash.com/photo-1632099372760-31a14a764cf0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb2JibGVzdG9uZSUyMHN0cmVldHxlbnwwfHx8fDE3NjcyMDA5MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A cobblestone street in a historic European town",
+      "imageHint": "cobblestone street"
+    },
+    {
+      "id": "39",
+      "imageUrl": "https://images.unsplash.com/photo-1758395440612-5e2bd238f6ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjcmF5b24lMjBkcmF3aW5nfGVufDB8fHx8MTc2NzIwMDkwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A child's drawing with colorful crayons",
+      "imageHint": "crayon drawing"
+    }
+  ]
 }
