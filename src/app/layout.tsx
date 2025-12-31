@@ -4,8 +4,8 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Batch Image Manager",
-  description: "Manage and download your images in batch.",
+  title: "Lens Library",
+  description: "Your personal photo gallery for DSLR dumps.",
 };
 
 export default function RootLayout({

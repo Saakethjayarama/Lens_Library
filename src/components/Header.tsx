@@ -13,7 +13,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <Image className="h-6 w-6 text-primary" />
           <h1 className="text-xl font-bold text-foreground">
-            Batch Image Manager
+            Lens Library
           </h1>
         </div>
         <Button variant="ghost" size="icon" onClick={logout} aria-label="Logout">

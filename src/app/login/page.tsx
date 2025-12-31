@@ -59,7 +59,7 @@ export default function LoginPage() {
           <div className="flex justify-center items-center mb-4">
              <ImageIcon className="h-8 w-8 text-primary" />
           </div>
-          <CardTitle className="text-2xl font-bold">Batch Image Manager</CardTitle>
+          <CardTitle className="text-2xl font-bold">Lens Library</CardTitle>
           <CardDescription>
             Please sign in to continue. (user / password)
           </CardDescription>
