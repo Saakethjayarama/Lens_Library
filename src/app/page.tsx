@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import * as imageService from "@/services/imageService";
 import type { ImagePlaceholder } from "@/lib/placeholder-images";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Header } from "@/components/Header";
@@ -33,22 +32,17 @@ export default function HomePage() {
     }
   }, [isAuthenticated, isAuthLoading, router]);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      loadImages();
-    }
-  }, [isAuthenticated]);
-
-  const loadImages = async (currentPage = page) => {
-    if (!hasMore && currentPage > 1) return;
+  const loadImages = useCallback(async () => {
+    if (isLoading || !hasMore) return;
+    
     setIsLoading(true);
     try {
       const { images: newImages, hasMore: newHasMore } =
-        await imageService.getImages(currentPage, IMAGES_PER_PAGE);
-      setImages((prev) => (currentPage === 1 ? newImages : [...prev, ...newImages]));
+        await imageService.getImages(page, IMAGES_PER_PAGE);
+      
+      setImages((prev) => [...prev, ...newImages]);
       setHasMore(newHasMore);
-      if (currentPage === 1) setPage(2);
-      else setPage((p) => p + 1);
+      setPage((prevPage) => prevPage + 1);
     } catch (error) {
       toast({
         variant: "destructive",
@@ -58,7 +52,38 @@ export default function HomePage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [page, hasMore, isLoading, toast]);
+
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      // Reset and load initial images
+      setImages([]);
+      setPage(1);
+      setHasMore(true);
+      // A little trick to make sure states are updated before loading
+      setTimeout(() => {
+          loadImages();
+      }, 0);
+    }
+  }, [isAuthenticated]);
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop < document.documentElement.offsetHeight - 200 ||
+        isLoading
+      ) {
+        return;
+      }
+      loadImages();
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isLoading, loadImages]);
+
 
   const handleToggleSelection = (id: string) => {
     setSelectedIds((prev) => {
@@ -155,17 +180,25 @@ export default function HomePage() {
   }
 
   const isSelectionMode = selectedIds.size > 0;
+  
+  const showInitialLoading = isLoading && page === 1 && images.length === 0;
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-          {images.length > 0 && (
+          {showInitialLoading ? (
+             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              {Array.from({ length: IMAGES_PER_PAGE }).map((_, index) => (
+                <Skeleton key={index} className="aspect-[3/2] w-full rounded-lg" />
+              ))}
+            </div>
+          ) : images.length > 0 ? (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {images.map((image) => (
                 <ImageCard
-                  key={image.id}
+                  key={`${image.id}-${page}`}
                   image={image}
                   isSelected={selectedIds.has(image.id)}
                   isSelectionMode={isSelectionMode}
@@ -175,38 +208,23 @@ export default function HomePage() {
                   onDownload={handleDownload}
                 />
               ))}
-              {isLoading &&
-                page > 1 &&
-                Array.from({ length: 4 }).map((_, index) => (
-                  <Skeleton key={index} className="aspect-[3/2] w-full rounded-lg" />
-                ))}
             </div>
+          ) : (
+             !isLoading && (
+                <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-muted-foreground/30 py-24 text-center">
+                    <Frown className="h-16 w-16 text-muted-foreground/50" />
+                    <h2 className="mt-4 text-xl font-semibold">No Images Found</h2>
+                    <p className="mt-2 text-sm text-muted-foreground">It seems your gallery is empty.</p>
+                </div>
+             )
           )}
 
-          {isLoading && page === 1 && (
-             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {Array.from({ length: IMAGES_PER_PAGE }).map((_, index) => (
-                <Skeleton key={index} className="aspect-[3/2] w-full rounded-lg" />
-              ))}
-            </div>
-          )}
-
-          {!isLoading && images.length === 0 && (
-            <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-muted-foreground/30 py-24 text-center">
-                <Frown className="h-16 w-16 text-muted-foreground/50" />
-                <h2 className="mt-4 text-xl font-semibold">No Images Found</h2>
-                <p className="mt-2 text-sm text-muted-foreground">It seems your gallery is empty.</p>
-            </div>
-          )}
-
-          {hasMore && !isLoading && (
+          {isLoading && !showInitialLoading && (
             <div className="mt-8 flex justify-center">
-              <Button onClick={() => loadImages()} disabled={isLoading}>
-                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Load More
-              </Button>
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           )}
+
         </div>
       </main>
       <BatchActions
