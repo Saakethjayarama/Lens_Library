@@ -4,7 +4,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: "Lens Library",
+  title: "Share Hub",
   description: "Your personal photo gallery for DSLR dumps.",
 };
 

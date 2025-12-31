@@ -39,10 +39,9 @@ export function ImageDialog({
           <DialogTitle className="truncate">{image.description}</DialogTitle>
         </DialogHeader>
         <div className="relative aspect-video group">
-          <Image
-            src={image.imageUrl}
-            alt={image.description}
-            fill
+          <img
+            src={`http://localhost:8000{image.imageUrl}`}
+            alt={image.description || ""}
             className="object-contain"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 66vw"
           />
@@ -73,7 +72,7 @@ export function ImageDialog({
         </div>
         <DialogFooter className="p-4 pt-0">
           <Button
-            onClick={() => onDownload(image.imageUrl, `image-${image.id}.jpg`)}
+            onClick={() => onDownload(image.id, `image-${image.id}.jpg`)}
           >
             <Download className="mr-2 h-4 w-4" />
             Download

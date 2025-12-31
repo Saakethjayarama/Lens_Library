@@ -13,7 +13,7 @@ import { BatchActions } from "@/components/BatchActions";
 import { ImageDialog } from "@/components/ImageDialog";
 import { Frown, Loader2 } from "lucide-react";
 
-const IMAGES_PER_PAGE = 12;
+const IMAGES_PER_PAGE = 200;
 
 export default function HomePage() {
   const { isAuthenticated, isLoading: isAuthLoading } = useAuth();
@@ -274,7 +274,7 @@ export default function HomePage() {
         onDeselectAll={handleDeselectAll}
         isDownloading={isDownloading}
       />
-       {viewingImage && (
+       {/* {viewingImage && (
         <ImageDialog
           image={viewingImage}
           onClose={handleCloseDialog}
@@ -284,7 +284,7 @@ export default function HomePage() {
           hasNext={viewingImageIndex < images.length - 1}
           hasPrevious={viewingImageIndex > 0}
         />
-      )}
+      )} */}
     </div>
   );
 }

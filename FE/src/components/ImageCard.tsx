@@ -58,8 +58,8 @@ export function ImageCard({
       )}
     >
       <CardContent className="p-0">
-        <Image
-          src={image.imageUrl}
+        <img
+          src={`http://192.168.0.107:8000${image.imageUrl}`}
           alt={image.description}
           width={600}
           height={400}
@@ -106,13 +106,13 @@ export function ImageCard({
             className="h-8 w-8 rounded-full"
             onClick={(e) => {
               e.stopPropagation();
-              onDownload(image.imageUrl, `image-${image.id}.jpg`);
+              onDownload(image.id, `image-${image.id}.jpg`);
             }}
             aria-label="Download image"
           >
             <Download className="h-4 w-4" />
           </Button>
-          <Button
+          {/* <Button
             variant="destructive"
             size="icon"
             className="h-8 w-8 rounded-full"
@@ -123,7 +123,7 @@ export function ImageCard({
             aria-label="Delete image"
           >
             <Trash2 className="h-4 w-4" />
-          </Button>
+          </Button> */}
         </div>
       </CardContent>
     </Card>

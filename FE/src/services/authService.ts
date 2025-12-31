@@ -1,7 +1,7 @@
 // Mock user data
 const mockUser = {
   username: "user",
-  password: "password",
+  password: "NalmudiViju",
 };
 
 export const login = (
