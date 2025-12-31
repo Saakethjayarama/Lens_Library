@@ -189,6 +189,21 @@ export default function HomePage() {
     });
     handleDeselectAll();
   };
+  
+  const viewingImageIndex = images.findIndex((img) => img.id === viewingImage?.id);
+
+  const handleNextImage = () => {
+    if (viewingImageIndex > -1 && viewingImageIndex < images.length - 1) {
+      setViewingImage(images[viewingImageIndex + 1]);
+    }
+  };
+
+  const handlePreviousImage = () => {
+    if (viewingImageIndex > 0) {
+      setViewingImage(images[viewingImageIndex - 1]);
+    }
+  };
+
 
   useEffect(() => {
     if (!isAuthLoading && !isAuthenticated) {
@@ -264,6 +279,10 @@ export default function HomePage() {
           image={viewingImage}
           onClose={handleCloseDialog}
           onDownload={handleDownload}
+          onNext={handleNextImage}
+          onPrevious={handlePreviousImage}
+          hasNext={viewingImageIndex < images.length - 1}
+          hasPrevious={viewingImageIndex > 0}
         />
       )}
     </div>
